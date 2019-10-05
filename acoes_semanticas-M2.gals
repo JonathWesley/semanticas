@@ -1,0 +1,44 @@
+#Options
+GenerateScanner = true
+GenerateParser = true
+Language = Java
+ScannerName = Lexico
+ParserName = Sintatico
+SemanticName = Semantico
+Package = gals
+ScannerCaseSensitive = true
+ScannerTable = Compact
+Input = Stream
+Parser = SLR
+#RegularDefinitions
+
+#Tokens
+ :[\ \n\t\r\s]+
+variavel: [A-Za-z]*
+imprimir: imprimir
+numeros: [0-1]+
+soma: \+
+subtracao: \-
+multiplicacao: \*
+divisao: "/"
+exponenciacao: "^"
+igual: "="
+abrirParenteses: "("
+fecharParenteses: ")"
+fim: ";"
+#NonTerminals
+<lista_comandos>
+<comando>
+<prioridade1>
+<prioridade2>
+<prioridade3>
+<prioridade4>
+
+
+#Grammar
+<lista_comandos> ::= <lista_comandos><comando> | <comando>;
+<comando> ::= variavel #1 igual <prioridade4> fim #2 | imprimir abrirParenteses <prioridade4> fecharParenteses fim #3 | <prioridade4>;
+<prioridade4> ::= <prioridade4> soma <prioridade3> #4 | <prioridade4> subtracao <prioridade3> #5 | <prioridade3>;
+<prioridade3> ::= <prioridade3> multiplicacao <prioridade2> #6 | <prioridade3> divisao <prioridade2> #7 | <prioridade2>;
+<prioridade2> ::= <prioridade2> exponenciacao <prioridade1> #8 | <prioridade1>;
+<prioridade1> ::= abrirParenteses <prioridade4> fecharParenteses | numeros #9 | variavel #10; 
