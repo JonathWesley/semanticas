@@ -1,21 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package trabm2;
 
-/**
- *
- * @author jonat
- */
-public class TrabM2 {
+import java.io.IOException;
 
-    /**
-     * @param args the command line arguments
-     */
+public class TrabM2 {
     public static void main(String[] args) {
-        // TODO code application logic here
+        try{
+            Lexico lexico = new Lexico("A = 100; B = 10;  B=111 + A / B; imprimir(B);");
+            
+            Sintatico sintatico = new sintatico();
+            Semantico semantico = new semantico();
+            
+            Sintatico.parse(lexico, semantico);
+        }catch(LexicalError | SyntaticError | SemanticError e){
+            System.out.println("Erro ao interpretar comando.");
+        }
     }
-    
 }

@@ -1,74 +1,67 @@
 package trabm2;
 
 import java.util.Stack;
+import java.util.Map;
+import java.util.HashMap;
 
 public class Semantico implements Constants
 {
-  Stack stack = new Stack();
+    Stack stack = new Stack();
+    Map<String, Integer> vars = new HashMap<String, Integer>();
+    String variavelAtual;
 
-  public int getResult()
-  {
-    return ((Integer)stack.peek()).intValue();
-  }
-
-  public void executeAction(int action, Token token) throws SemanticError
-  {
-    Integer a, b;
-
-    switch (action)
+    public int getResult()
     {
-        case 1:
-            String tmp = currentToken.getLexeme();
-            if (tmp.charAt(0) == '0')
-              throw new SemanticError("Números começados por 0 não são permitidos", token.getPosition());
-            stack.push(Integer.valueOf(tmp));
-            break;
-        case 2:
-            b = (Integer) stack.pop();
-            a = (Integer) stack.pop();
-            stack.push(new Integer(a.intValue() + b.intValue()));
-            break;
-        case 3:
-            b = (Integer) stack.pop();
-            a = (Integer) stack.pop();
-            stack.push(new Integer(a.intValue() - b.intValue()));
-            break;
-        case 4:
-            b = (Integer) stack.pop();
-            a = (Integer) stack.pop();
-            stack.push(new Integer(a.intValue() * b.intValue()));
-            break;
-        case 5:
-            b = (Integer) stack.pop();
-            a = (Integer) stack.pop();
-            stack.push(new Integer(a.intValue() / b.intValue()));
-            break;
-        case 6:
-            String tmp = currentToken.getLexeme();
-            if (tmp.charAt(0) == '0')
-              throw new SemanticError("Números começados por 0 não são permitidos", token.getPosition());
-            stack.push(Integer.valueOf(tmp));
-            break;
-        case 7:
-            b = (Integer) stack.pop();
-            a = (Integer) stack.pop();
-            stack.push(new Integer(a.intValue() + b.intValue()));
-            break;
-        case 8:
-            b = (Integer) stack.pop();
-            a = (Integer) stack.pop();
-            stack.push(new Integer(a.intValue() - b.intValue()));
-            break;
-        case 9:
-            b = (Integer) stack.pop();
-            a = (Integer) stack.pop();
-            stack.push(new Integer(a.intValue() * b.intValue()));
-            break;
-        case 10:
-            b = (Integer) stack.pop();
-            a = (Integer) stack.pop();
-            stack.push(new Integer(a.intValue() / b.intValue()));
-            break;
+        return ((Integer)stack.peek()).intValue();
     }
-  }
+
+    public void executeAction(int action, Token token) throws SemanticError
+    {
+        Integer a, b;
+
+        switch (action)
+        {
+            case 1: //variavel atual
+                variavelAtual = token.getLexeme();
+                break;
+            case 2: //salva variavel com o valor
+                vars.put(variavelAtual, stack.pop());
+                break;
+            case 3: //funcao imprimir
+                System.out.println(Integer.toBinaryString(vars.get(variavelAtual)));
+                break;
+            case 4: //adicao
+                b = stack.pop();
+                a = stack.pop();
+                stack.push(new Integer(a.intValue() + b.intValue()));
+                break;
+            case 5: //subtracao
+                b = stack.pop();
+                a = stack.pop();
+                stack.push(new Integer(a.intValue() - b.intValue()));
+                break;
+            case 6: //multiplicacao
+                b = stack.pop();
+                a = stack.pop();
+                stack.push(new Integer(a.intValue() * b.intValue()));
+                break;
+            case 7: //divisao
+                b = stack.pop();
+                a = stack.pop();
+                stack.push(new Integer(a.intValue() / b.intValue()));
+                break;
+            case 8: //exponenciacao
+                b = stack.pop();
+                a = stack.pop();
+                Double A = Math.pow(a, b);
+                stack.push(A.intValue());
+                break;
+            case 9: //empilha numeros
+                stack.push(Integer.parseInt(token.getLexeme(),2));
+                break;
+            case 10: //empilha variavel
+                stack.push(vars.get(token.getLexeme()));
+                break; 
+        }
+    }
 }

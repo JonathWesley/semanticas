@@ -1,6 +1,5 @@
 package trabm2;
 
-import trabm2.Semantico;
 import java.util.Stack;
 
 public class Sintatico implements Constants
