@@ -25,34 +25,34 @@ public class Semantico implements Constants
                 variavelAtual = token.getLexeme();
                 break;
             case 2: //salva variavel com o valor
-                vars.put(variavelAtual, stack.pop());
+                vars.put(variavelAtual, (Integer) stack.pop());
                 break;
             case 3: //funcao imprimir
                 System.out.println(Integer.toBinaryString(vars.get(variavelAtual)));
                 break;
             case 4: //adicao
-                b = stack.pop();
-                a = stack.pop();
+                b = (Integer) stack.pop();
+                a = (Integer) stack.pop();
                 stack.push(new Integer(a.intValue() + b.intValue()));
                 break;
             case 5: //subtracao
-                b = stack.pop();
-                a = stack.pop();
+                b = (Integer) stack.pop();
+                a = (Integer) stack.pop();
                 stack.push(new Integer(a.intValue() - b.intValue()));
                 break;
             case 6: //multiplicacao
-                b = stack.pop();
-                a = stack.pop();
+                b = (Integer) stack.pop();
+                a = (Integer) stack.pop();
                 stack.push(new Integer(a.intValue() * b.intValue()));
                 break;
             case 7: //divisao
-                b = stack.pop();
-                a = stack.pop();
+                b = (Integer) stack.pop();
+                a = (Integer)stack.pop();
                 stack.push(new Integer(a.intValue() / b.intValue()));
                 break;
             case 8: //exponenciacao
-                b = stack.pop();
-                a = stack.pop();
+                b = (Integer) stack.pop();
+                a = (Integer) stack.pop();
                 Double A = Math.pow(a, b);
                 stack.push(A.intValue());
                 break;
