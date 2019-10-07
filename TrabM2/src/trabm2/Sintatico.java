@@ -19,7 +19,7 @@ public class Sintatico implements Constants
         stack.push(new Integer(0));
 
         currentToken = scanner.nextToken();
-
+        
         while ( ! step() )
             ;
     }

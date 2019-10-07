@@ -1,8 +1,6 @@
 package trabm2;
 
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.LineNumberReader;
 import java.io.Reader;
 import java.io.StringReader;
 
@@ -13,15 +11,22 @@ public class TrabM2 {
         Sintatico sintatico = new Sintatico();
         Semantico semantico = new Semantico();
             
-        String initialString = "A = 100; B = 10; B = 111 + A / B; imprimir(B);";
+        String initialString = "A = 100; imprimir(A);";// B = 10; B = 111 + A / B; A = 10 ^ 10;";
         Reader targetReader = new StringReader(initialString);
         lexico.setInput(targetReader);
         
         
         try{
             sintatico.parse(lexico, semantico);
-        }catch(LexicalError | SyntaticError | SemanticError e){
-            System.out.println("Erro ao interpretar comando.");
+        }catch(LexicalError e){
+            System.out.println("Erro lexico.");
+            e.printStackTrace();
+        }catch(SyntaticError e){
+            System.out.println("Erro sintatico.");
+            e.printStackTrace();
+        }catch(SemanticError e){
+            System.out.println("Erro semantico.");
+            e.printStackTrace();
         }
     }
 }
