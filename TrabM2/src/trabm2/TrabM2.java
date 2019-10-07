@@ -3,6 +3,7 @@ package trabm2;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
+import java.util.Scanner;
 
 public class TrabM2 {
     public static void main(String[] args) throws IOException {
@@ -10,8 +11,9 @@ public class TrabM2 {
             
         Sintatico sintatico = new Sintatico();
         Semantico semantico = new Semantico();
-            
-        String initialString = "A = 100; B = 10; B = 111 + A / B; imprimir(B); imprimir(A);";
+        
+        Scanner scanner = new Scanner(System.in);
+        String initialString = scanner.nextLine();//"C = 101; A = 100; B = 10; B = 111 + A / B; ->(B); ->(A); ->(C);";
         Reader targetReader = new StringReader(initialString);
         lexico.setInput(targetReader);
         

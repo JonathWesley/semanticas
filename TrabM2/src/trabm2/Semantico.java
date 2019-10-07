@@ -36,7 +36,7 @@ public class Semantico implements Constants
                 //System.out.println("2->"+variavelAtual+"="+c);
                 break;
             case 3: //funcao imprimir
-                System.out.println(Integer.toBinaryString(vars.get(variavelAtual)));
+                System.out.println(Integer.toBinaryString((Integer)stack.pop()));
                 //System.out.println("3->imprimindo("+Integer.toBinaryString(vars.get(variavelAtual))+")");
                 break;
             case 4: //adicao
@@ -77,7 +77,7 @@ public class Semantico implements Constants
             case 10: //empilha variavel
                 //if(!token.getLexeme().equals("imprimir")){
                     stack.push(vars.get(token.getLexeme()));
-                    variavelAtual = token.getLexeme();
+                    //variavelAtual = token.getLexeme();
                     //System.out.println("10->pilha<"+vars.get(token.getLexeme()));
                 //}else{
                 //    System.out.println("imprimir nao funciona");
