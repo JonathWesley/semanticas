@@ -11,10 +11,9 @@ public class TrabM2 {
         Sintatico sintatico = new Sintatico();
         Semantico semantico = new Semantico();
             
-        String initialString = "A = 100; imprimir(A);";// B = 10; B = 111 + A / B; A = 10 ^ 10;";
+        String initialString = "A = 100; B = 10; B = 111 + A / B; imprimir(B); imprimir(A);";
         Reader targetReader = new StringReader(initialString);
         lexico.setInput(targetReader);
-        
         
         try{
             sintatico.parse(lexico, semantico);

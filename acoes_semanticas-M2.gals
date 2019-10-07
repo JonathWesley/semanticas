@@ -37,8 +37,9 @@ fim: ";"
 
 #Grammar
 <lista_comandos> ::= <lista_comandos><comando> | <comando>;
-<comando> ::= variavel #1 igual <prioridade4> fim #2 | imprimir abrirParenteses <prioridade4> fecharParenteses fim #3 | <prioridade4>;
+<comando> ::= variavel #1 igual <prioridade4> fim #2 | imprimir abrirParenteses <prioridade4> fecharParenteses <prioridade4> | <prioridade4>;
 <prioridade4> ::= <prioridade4> soma <prioridade3> #4 | <prioridade4> subtracao <prioridade3> #5 | <prioridade3>;
 <prioridade3> ::= <prioridade3> multiplicacao <prioridade2> #6 | <prioridade3> divisao <prioridade2> #7 | <prioridade2>;
 <prioridade2> ::= <prioridade2> exponenciacao <prioridade1> #8 | <prioridade1>;
-<prioridade1> ::= abrirParenteses <prioridade4> fecharParenteses | numeros #9 | variavel #10; 
+<prioridade1> ::= abrirParenteses <prioridade4> fecharParenteses | numeros #9 | variavel #10 | fim #3;
+
